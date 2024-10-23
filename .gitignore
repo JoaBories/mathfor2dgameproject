@@ -1,0 +1,14 @@
+
+UserSettings/
+
+Logs/
+
+obj/
+
+Library/
+
+.vs/
+
+BouncingFlagExercise.sln
+
+Assembly-CSharp.csproj
