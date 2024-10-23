@@ -5,6 +5,7 @@ using UnityEngine;
 public class BouncingLogoSCript : MonoBehaviour
 {
     Vector2 screenSize;
+    Vector2 screenPos;
     Vector2 dvdSize;
     public Vector2 speed;
 
@@ -22,14 +23,16 @@ public class BouncingLogoSCript : MonoBehaviour
     {
         transform.position += new Vector3(speed.x, speed.y, 0) * Time.deltaTime;
 
-        Vector2 pos = GetComponent<RectTransform>().position;
+        Vector2 pos = GetComponent<RectTransform>().localPosition;
 
-        if (pos.x >= screenSize.x)
+        if (pos.x + dvdSize.x/2 >= screenSize.x/2 || pos.x - dvdSize.x / 2 <= -screenSize.x / 2)
         {
             speed.x = -speed.x;
         }
 
-
-        Debug.Log(screenSize.x + " " + transform.position);
+        if (pos.y + dvdSize.y/2 >= screenSize.y / 2 || pos.y - dvdSize.y / 2 <= -screenSize.y / 2)
+        {
+            speed.y = -speed.y;
+        }
     }
 }

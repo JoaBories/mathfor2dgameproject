@@ -12,3 +12,7 @@ Library/
 BouncingFlagExercise.sln
 
 Assembly-CSharp.csproj
+
+Temp/
+
+mathfor2dgameproject.sln
