@@ -8,10 +8,7 @@ public class Zombie : MonoBehaviour
 
     void Update()
     {
-        float adj = player.transform.position.x - transform.position.x;
-        float opp = player.transform.position.y - transform.position.y;
-        Debug.Log(Mathf.Atan2(adj, opp) * Mathf.Rad2Deg);
-
-        transform.rotation = Quaternion.Euler(0,0, -Mathf.Atan2(adj, opp) * Mathf.Rad2Deg);
+        Vector2 difference = player.transform.position - transform.position;
+        transform.rotation = Quaternion.Euler(0,0, -Mathf.Atan2(difference.x, difference.y) * Mathf.Rad2Deg);
     }
 }
