@@ -16,3 +16,11 @@ Assembly-CSharp.csproj
 Temp/
 
 mathfor2dgameproject.sln
+
+DVD/
+
+*.zip
+
+SpaceShip/
+
+Zombie/

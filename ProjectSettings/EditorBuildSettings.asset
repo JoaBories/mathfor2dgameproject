@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DVDScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 0
+    path: Assets/Scenes/SpaceShip.unity
+    guid: 49d9c1a5f625b184b98b2f9c054e3077
+  - enabled: 1
+    path: Assets/Scenes/ZombieScene.unity
+    guid: c6afeae44c3d25e47a1b95ba7d8ae1e5
   m_configObjects: {}
