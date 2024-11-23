@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Spaceship : MonoBehaviour
 {
@@ -8,11 +10,19 @@ public class Spaceship : MonoBehaviour
     private Vector3 velocity;
     private float speed;
     private Vector3 goalPosition;
-    [SerializeField] private float shipRadius;
+    public float shipRadius;
+    [SerializeField] private GameObject lasePrefab;
+    public static Spaceship instance;
+    private float nextShoot;
+    [SerializeField] private GameObject endText;
+    [SerializeField] private GameObject restartButton;
+
 
     private void Start()
     {
         goalPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        instance = this;
+        nextShoot = Time.time;
     }
 
     void Update()
@@ -31,22 +41,34 @@ public class Spaceship : MonoBehaviour
             speed = acceleration;
         }
         
+        if (Input.GetKeyDown(KeyCode.Mouse0) && nextShoot < Time.time)
+        {
+            Instantiate(lasePrefab, transform.position, transform.rotation);
+            nextShoot = Time.time + 0.2f;
+        }
+
         velocity += transform.up * speed * Time.deltaTime;
         transform.position += velocity * Time.deltaTime;
 
-        foreach(GameObject asteroid in GameObject.FindGameObjectsWithTag("Asteroid"))
+        if (GameObject.FindGameObjectsWithTag("Asteroid").Count() == 0)
         {
-            float asteroidRadius = asteroid.GetComponent<Asteroid>().radius;
-            if ((asteroid.transform.position - transform.position).sqrMagnitude <= (asteroidRadius + shipRadius) * (asteroidRadius + shipRadius))
-            {
-                gameOver();
-            }
+            win();
         }
         
     }
 
-    private void gameOver()
+    public void gameOver()
     {
-        Debug.Log("gameOver");
+        endText.SetActive(true);
+        endText.GetComponent<Text>().text = "loose";
+        restartButton.SetActive(true);
+        Destroy(gameObject);
+    }
+
+    public void win()
+    {
+        endText.SetActive(true);
+        endText.GetComponent<Text>().text = "win";
+        restartButton.SetActive(true);
     }
 }
