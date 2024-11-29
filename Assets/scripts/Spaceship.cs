@@ -71,4 +71,10 @@ public class Spaceship : MonoBehaviour
         endText.GetComponent<Text>().text = "win";
         restartButton.SetActive(true);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, shipRadius);
+    }
 }

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 
 public class Asteroid : MonoBehaviour
@@ -29,14 +28,14 @@ public class Asteroid : MonoBehaviour
         transform.position += transform.up * speed * Time.deltaTime;
 
         float shipRadius = Spaceship.instance.shipRadius;
-        if ((transform.position - Spaceship.instance.transform.position).magnitude <= shipRadius + radius)
+        if ((transform.position - Spaceship.instance.transform.position).sqrMagnitude <= (shipRadius + radius)* (shipRadius + radius))
         {
             Spaceship.instance.gameOver();
         }
 
         foreach (GameObject laser in GameObject.FindGameObjectsWithTag("laser"))
         {
-            if ((laser.transform.position - transform.position).magnitude <= radius)
+            if ((laser.transform.position - transform.position).sqrMagnitude <= (radius * 1.3f)*(radius * 1.3f))
             {
                 Destroy(laser);
                 split(size);
@@ -57,5 +56,15 @@ public class Asteroid : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, radius);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, radius * 1.3f);
+
     }
 }

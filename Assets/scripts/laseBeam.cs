@@ -16,9 +16,15 @@ public class laseBeam : MonoBehaviour
     void Update()
     {
         transform.position += transform.up * speed * Time.deltaTime;
-        if ((startPos - transform.position).magnitude > maxDistance)
+        if ((startPos - transform.position).sqrMagnitude > maxDistance*maxDistance)
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, 0.1f);
     }
 }

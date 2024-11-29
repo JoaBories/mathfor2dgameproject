@@ -107,7 +107,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cdf7af2c08b681341a5d2f30702fece0, type: 3}
   - {fileID: 21300000, guid: e4cc2dafe0f3ade4d923ea8d22e63f6b, type: 3}
   - {fileID: 21300000, guid: c5da86781f3a24b4ca5800f5949b1ed0, type: 3}
-  baseRadius: 2
+  baseRadius: 1.8
   scaleList:
   - 0.2
   - 0.3
@@ -126,3 +126,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e5d892b34df5c458d9495560b9d131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectSize: 0.6
